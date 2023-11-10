@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E15254052AE61B260093B92F /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = E15254042AE61B260093B92F /* SwiftUIIntrospect */; };
-		E15254072AE61B260093B92F /* SwiftUIIntrospect-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E15254062AE61B260093B92F /* SwiftUIIntrospect-Dynamic */; };
-		E15254092AE61B260093B92F /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = E15254082AE61B260093B92F /* SwiftUIIntrospect-Static */; };
 		E19493ED2AE47A2500226C0B /* PreferencesViewExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19493EC2AE47A2500226C0B /* PreferencesViewExampleApp.swift */; };
 		E19493EF2AE47A2500226C0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19493EE2AE47A2500226C0B /* ContentView.swift */; };
 		E19493F12AE47A2600226C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19493F02AE47A2600226C0B /* Assets.xcassets */; };
@@ -31,9 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E15254052AE61B260093B92F /* SwiftUIIntrospect in Frameworks */,
-				E15254072AE61B260093B92F /* SwiftUIIntrospect-Dynamic in Frameworks */,
-				E15254092AE61B260093B92F /* SwiftUIIntrospect-Static in Frameworks */,
 				E19493FF2AE47E4000226C0B /* PreferencesView in Frameworks */,
 				E19493FC2AE47A3300226C0B /* PreferencesView in Frameworks */,
 			);
@@ -96,9 +90,6 @@
 			packageProductDependencies = (
 				E19493FB2AE47A3300226C0B /* PreferencesView */,
 				E19493FE2AE47E4000226C0B /* PreferencesView */,
-				E15254042AE61B260093B92F /* SwiftUIIntrospect */,
-				E15254062AE61B260093B92F /* SwiftUIIntrospect-Dynamic */,
-				E15254082AE61B260093B92F /* SwiftUIIntrospect-Static */,
 			);
 			productName = PreferencesViewExample;
 			productReference = E19493E92AE47A2500226C0B /* PreferencesViewExample.app */;
@@ -130,7 +121,6 @@
 			mainGroup = E19493E02AE47A2500226C0B;
 			packageReferences = (
 				E19493FD2AE47E4000226C0B /* XCLocalSwiftPackageReference "../.." */,
-				E15254032AE61B260093B92F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = E19493EA2AE47A2500226C0B /* Products */;
 			projectDirPath = "";
@@ -375,33 +365,7 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		E15254032AE61B260093B92F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		E15254042AE61B260093B92F /* SwiftUIIntrospect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E15254032AE61B260093B92F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = SwiftUIIntrospect;
-		};
-		E15254062AE61B260093B92F /* SwiftUIIntrospect-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E15254032AE61B260093B92F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = "SwiftUIIntrospect-Dynamic";
-		};
-		E15254082AE61B260093B92F /* SwiftUIIntrospect-Static */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E15254032AE61B260093B92F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = "SwiftUIIntrospect-Static";
-		};
 		E19493FB2AE47A3300226C0B /* PreferencesView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PreferencesView;

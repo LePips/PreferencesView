@@ -6,11 +6,11 @@ public class UIPreferencesHostingController: UIHostingController<AnyView> {
         let box = Box()
         let rootView = AnyView(
             content()
+                .onPreferenceChange(KeyCommandsPreferenceKey.self) {
+                    box.value?._keyCommandActions = $0
+                }
                 .onPreferenceChange(PrefersHomeIndicatorAutoHiddenPreferenceKey.self) {
                     box.value?._prefersHomeIndicatorAutoHidden = $0
-                }
-                .onPreferenceChange(PrefersStatusBarHiddenKey.self) {
-                    box.value?._prefersStatusBarHidden = $0
                 }
                 .onPreferenceChange(SupportedOrientationsPreferenceKey.self) {
                     box.value?._orientations = $0
@@ -51,19 +51,34 @@ public class UIPreferencesHostingController: UIHostingController<AnyView> {
         _orientations
     }
     
-    private var _presentationOrientation: UIInterfaceOrientation = .portrait
+    // MARK: Key Commands
     
-    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        _presentationOrientation
+    private var _keyCommandActions: [KeyCommandAction] = [] {
+        willSet {
+            _keyCommands = newValue.map { action in
+                let keyCommand = UIKeyCommand(
+                    title: action.title,
+                    action: #selector(keyCommandHit),
+                    input: String(action.input),
+                    modifierFlags: action.modifierFlags
+                )
+                
+                keyCommand.subtitle = action.subtitle
+                keyCommand.wantsPriorityOverSystemBehavior = true
+                
+                return keyCommand
+            }
+        }
     }
-    
-    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        .slide
+    private var _keyCommands: [UIKeyCommand] = []
+
+    public override var keyCommands: [UIKeyCommand]? {
+        _keyCommands
     }
-    
-    private var _prefersStatusBarHidden: Bool = false
-    
-    public override var prefersStatusBarHidden: Bool {
-        _prefersStatusBarHidden
+
+    @objc
+    private func keyCommandHit(keyCommand: UIKeyCommand) {
+        guard let action = _keyCommandActions.first(where: { String($0.input) == keyCommand.input && $0.modifierFlags == keyCommand.modifierFlags }) else { return }
+        action.action()
     }
 }

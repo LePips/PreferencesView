@@ -1,6 +1,5 @@
 import PreferencesView
 import SwiftUI
-import SwiftUIIntrospect
 
 struct ContentView: View {
     
@@ -20,13 +19,14 @@ struct ContentView: View {
                 Color.red
                 
                 Button {
-                    hideOtherViews.toggle()
+//                    hideOtherViews.toggle()
+                    isFullScreenCoverPresented = true
                 } label: {
                     Text("Toggle Shmoggle")
                 }
             }
             
-            if !hideOtherViews {
+            if hideOtherViews {
                 Color.blue
                     .frame(height: 50)
                 
@@ -34,7 +34,25 @@ struct ContentView: View {
                     .frame(height: 50)
             }
         }
-        .supportedOrientations(hideOtherViews ? .landscapeLeft : .all)
+        .keyCommands {
+            KeyCommandAction(title: "Fullscreen View", subtitle: "Enter the fullscreen view.", input: "f", modifierFlags: .shift) {
+                isFullScreenCoverPresented = true
+            }
+            
+            KeyCommandAction(title: "Hide", input: "h", modifierFlags: .control) {
+                withAnimation(.easeIn(duration: 0.3)) {
+                    hideOtherViews.toggle()
+                }
+            }
+        }
+        .supportedOrientations(hideOtherViews ? .landscape : .all)
+        .fullScreenCover(isPresented: $isFullScreenCoverPresented) {
+            PreferencesView {
+                SecondView()
+                    .preferredColorScheme(.dark)
+                    .supportedOrientations(.landscape)
+            }
+        }
     }
 }
 
@@ -48,14 +66,14 @@ struct SecondView: View {
     
     var body: some View {
         ZStack {
-            Color.black
+//            Color.black
             
             VStack {
                 Text("I should be landscaped with the home bar auto hidden and edge gestures deferred")
-                    .foregroundStyle(.white)
+//                    .foregroundStyle(.white)
                 
                 Text("Color scheme: \(colorScheme == .light ? "Light" : "Dark")")
-                    .foregroundStyle(.white)
+//                    .foregroundStyle(.white)
                 
                 Button("Dismiss") {
                     dismiss()
@@ -63,5 +81,10 @@ struct SecondView: View {
             }
         }
         .ignoresSafeArea()
+        .keyCommands {
+            KeyCommandAction(title: "Fullscreen", input: "f", modifierFlags: .shift) {
+                dismiss()
+            }
+        }
     }
 }

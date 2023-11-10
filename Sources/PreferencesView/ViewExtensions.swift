@@ -2,16 +2,16 @@ import SwiftUI
 
 public extension View {
     
-    func interfaceOrientationPresentation(_ orientation: UIInterfaceOrientation) -> some View {
-        preference(key: PreferredInterfaceOrientationForPresentationKey.self, value: orientation)
+    func keyCommands(_ commands: [KeyCommandAction]) -> some View {
+        preference(key: KeyCommandsPreferenceKey.self, value: commands)
+    }
+    
+    func keyCommands(@KeyCommandsBuilder _ commands: @escaping () -> [KeyCommandAction]) -> some View {
+        preference(key: KeyCommandsPreferenceKey.self, value: commands())
     }
 
     func prefersHomeIndicatorAutoHidden(_ hidden: Bool) -> some View {
         preference(key: PrefersHomeIndicatorAutoHiddenPreferenceKey.self, value: hidden)
-    }
-    
-    func prefersStatusBarHidden(_ hidden: Bool, animation: UIStatusBarAnimation) -> some View {
-        preference(key: PrefersStatusBarHiddenKey.self, value: hidden)
     }
 
     func supportedOrientations(_ supportedOrientations: UIInterfaceOrientationMask, presentationOrientation: UIInterfaceOrientation? = nil) -> some View {
