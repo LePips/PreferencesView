@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect",
+      "state" : {
+        "revision" : "3ced72fccb284235c266c1e8a32f1bf93129fc74",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swizzleswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MarioIannotta/SwizzleSwift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e2d31c646182bf94a496b173c6ee5ad191230e9a"
+      }
+    }
+  ],
+  "version" : 2
+}
