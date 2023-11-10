@@ -14,7 +14,7 @@ public extension View {
         preference(key: PrefersHomeIndicatorAutoHiddenPreferenceKey.self, value: hidden)
     }
 
-    func supportedOrientations(_ supportedOrientations: UIInterfaceOrientationMask, presentationOrientation: UIInterfaceOrientation? = nil) -> some View {
+    func supportedOrientations(_ supportedOrientations: UIInterfaceOrientationMask) -> some View {
         preference(key: SupportedOrientationsPreferenceKey.self, value: supportedOrientations)
     }
 }

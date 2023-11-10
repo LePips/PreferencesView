@@ -70,6 +70,7 @@ public class UIPreferencesHostingController: UIHostingController<AnyView> {
             }
         }
     }
+    
     private var _keyCommands: [UIKeyCommand] = []
 
     public override var keyCommands: [UIKeyCommand]? {

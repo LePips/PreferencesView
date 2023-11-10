@@ -19,14 +19,13 @@ struct ContentView: View {
                 Color.red
                 
                 Button {
-//                    hideOtherViews.toggle()
                     isFullScreenCoverPresented = true
                 } label: {
                     Text("Toggle Shmoggle")
                 }
             }
             
-            if hideOtherViews {
+            if !hideOtherViews {
                 Color.blue
                     .frame(height: 50)
                 
@@ -49,8 +48,6 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $isFullScreenCoverPresented) {
             PreferencesView {
                 SecondView()
-                    .preferredColorScheme(.dark)
-                    .supportedOrientations(.landscape)
             }
         }
     }
@@ -66,14 +63,11 @@ struct SecondView: View {
     
     var body: some View {
         ZStack {
-//            Color.black
             
             VStack {
-                Text("I should be landscaped with the home bar auto hidden and edge gestures deferred")
-//                    .foregroundStyle(.white)
+                Text("I should be landscape with the home bar auto hidden and edge gestures deferred")
                 
                 Text("Color scheme: \(colorScheme == .light ? "Light" : "Dark")")
-//                    .foregroundStyle(.white)
                 
                 Button("Dismiss") {
                     dismiss()
@@ -81,8 +75,11 @@ struct SecondView: View {
             }
         }
         .ignoresSafeArea()
+        .preferredColorScheme(.dark)
+        .supportedOrientations(.landscape)
+        .prefersHomeIndicatorAutoHidden(true)
         .keyCommands {
-            KeyCommandAction(title: "Fullscreen", input: "f", modifierFlags: .shift) {
+            KeyCommandAction(title: "Dismiss", input: "f", modifierFlags: .shift) {
                 dismiss()
             }
         }

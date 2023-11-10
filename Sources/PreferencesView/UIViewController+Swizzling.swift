@@ -12,8 +12,6 @@ extension UIViewController {
 //            #selector(getter: childForHomeIndicatorAutoHidden) <-> #selector(swizzled_childForHomeIndicatorAutoHidden)
 //            #selector(getter: prefersHomeIndicatorAutoHidden) <-> #selector(swizzled_prefersHomeIndicatorAutoHidden)
             #selector(getter: supportedInterfaceOrientations) <-> #selector(swizzled_supportedInterfaceOrientations)
-            #selector(getter: preferredInterfaceOrientationForPresentation) <-> #selector(swizzled_preferredInterfaceOrientationForPresentation)
-            #selector(getter: preferredStatusBarUpdateAnimation) <-> #selector(swizzled_preferredStatusBarUpdateAnimation)
         }
     }()
     
@@ -45,16 +43,6 @@ extension UIViewController {
     @objc
     func swizzled_supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         search()?.supportedInterfaceOrientations ?? .all
-    }
-    
-    @objc
-    func swizzled_preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        search()?.preferredInterfaceOrientationForPresentation ?? .unknown
-    }
-    
-    @objc
-    func swizzled_preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        search()?.preferredStatusBarUpdateAnimation ?? .slide
     }
     
     // MARK: Search
