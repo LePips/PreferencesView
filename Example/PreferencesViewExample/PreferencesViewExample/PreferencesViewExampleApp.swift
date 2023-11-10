@@ -12,9 +12,9 @@ import SwiftUI
 struct PreferencesViewExampleApp: App {
     var body: some Scene {
         WindowGroup {
-//            PreferencesView {
+            PreferencesView {
                 ContentView()
-//            }
+            }
         }
     }
 }

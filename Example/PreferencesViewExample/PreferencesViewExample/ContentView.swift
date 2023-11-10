@@ -10,29 +10,31 @@ struct ContentView: View {
     @State
     private var isStatusBarHidden = false
     
+    @State
+    private var hideOtherViews = false
+    
     var body: some View {
         VStack {
-            Button("Present full screen cover") {
-                isFullScreenCoverPresented = true
+            
+            ZStack {
+                Color.red
+                
+                Button {
+                    hideOtherViews.toggle()
+                } label: {
+                    Text("Toggle Shmoggle")
+                }
             }
             
-            Button("Hide status bar") {
-                isStatusBarHidden.toggle()
+            if !hideOtherViews {
+                Color.blue
+                    .frame(height: 50)
+                
+                Color.green
+                    .frame(height: 50)
             }
         }
-        .introspect(.viewController, on: .iOS(.v17)) { viewController in
-            
-        }
-        .fullScreenCover(isPresented: $isFullScreenCoverPresented) {
-//            PreferencesView {
-                SecondView()
-                    .prefersHomeIndicatorAutoHidden(true)
-//                    .supportedOrientations(.landscape)
-//            }
-            .ignoresSafeArea()
-        }
-//        .prefersStatusBarHidden(true, animation: .slide)
-//        .supportedOrientations(.portrait)
+        .supportedOrientations(hideOtherViews ? .landscapeLeft : .all)
     }
 }
 

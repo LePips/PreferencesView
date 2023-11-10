@@ -39,7 +39,13 @@ public class UIPreferencesHostingController: UIHostingController<AnyView> {
 
     // MARK: Orientation
 
-    private var _orientations: UIInterfaceOrientationMask = .all
+    private var _orientations: UIInterfaceOrientationMask = .all {
+        didSet {
+            if #available(iOS 16, *) {
+                setNeedsUpdateOfSupportedInterfaceOrientations()
+            }
+        }
+    }
 
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         _orientations
@@ -59,28 +65,5 @@ public class UIPreferencesHostingController: UIHostingController<AnyView> {
     
     public override var prefersStatusBarHidden: Bool {
         _prefersStatusBarHidden
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        self.view.layer.opacity = 0
-//        
-//        withAnimation(.linear(duration: 1)) {
-//            self.view.layer.opacity = 1
-//        }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("View did appear")
-
-    }
-    
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        print("View will disappear")
     }
 }
